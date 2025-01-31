@@ -1,33 +1,35 @@
 package com.example.evaluationre.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.evaluationre.api.NewsModel
 import com.example.evaluationre.api.NewsRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class NewsViewModel : ViewModel() {
     private val _newsLiveData = MutableLiveData<List<NewsModel>>()
     val newsLiveData: LiveData<List<NewsModel>> = _newsLiveData
-
-    private val newsRepository = NewsRepository()
+    private var job: Job? = null
 
     fun fetchNews(source: String, country: String) {
-        viewModelScope.launch {
-            try {
-                val news = fetchNewsFromApi(source, country)
+
+        job?.cancel()
+
+        job = viewModelScope.launch(Dispatchers.IO) {
+            val newsRepository = NewsRepository()
+            val news = newsRepository.getNewsInfo(source, country)
+            Log.d("NewsViewModel", "Fetched ${news.size} news items")
+            withContext(Main){
                 _newsLiveData.postValue(news)
-            } catch (e: Exception) {
-                _newsLiveData.postValue(emptyList())
             }
         }
     }
 
-    private suspend fun fetchNewsFromApi(source: String, country: String): List<NewsModel> {
-        val newsEntity = newsRepository.getNewsInfo(source, country)
-
-        return newsEntity
-    }
 }

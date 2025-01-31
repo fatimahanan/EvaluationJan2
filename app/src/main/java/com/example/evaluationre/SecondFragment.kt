@@ -1,6 +1,7 @@
 package com.example.evaluationre
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,6 @@ class SecondFragment : Fragment(), NewsAdapter.ItemClickListener
 {
     private lateinit var recyclerView: RecyclerView
     private var mAdapter: NewsAdapter = NewsAdapter(this)
-//    private lateinit var viewModel : NewsViewModel
     private val viewModel by viewModels<NewsViewModel>()
 
 
@@ -23,7 +23,6 @@ class SecondFragment : Fragment(), NewsAdapter.ItemClickListener
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_2, container, false)
 
         val source = arguments?.getString("source") ?: "empty"
         val country = arguments?.getString("country") ?: "empty"
@@ -34,7 +33,8 @@ class SecondFragment : Fragment(), NewsAdapter.ItemClickListener
         viewModel.newsLiveData.observe(viewLifecycleOwner){
             mAdapter.updateData(it)
         }
-        return view
+
+        return inflater.inflate(R.layout.fragment_2, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -11,8 +11,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class NewsAdapter(mainActivity: SecondFragment) :
-    RecyclerView.Adapter<NewsViewHolder>() {
+class NewsAdapter(mainActivity: SecondFragment) : RecyclerView.Adapter<NewsViewHolder>() {
 
     private var mClickListener: ItemClickListener = mainActivity
 
