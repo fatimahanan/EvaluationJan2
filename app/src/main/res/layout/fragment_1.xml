@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <EditText
+        android:id="@+id/news_source_edit_txt"
+        android:hint="@string/enter_source"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:layout_marginTop="40dp"
+        android:textSize="50sp">
+    </EditText>
+
+    <EditText
+        android:id="@+id/country_edit_txt"
+        android:hint="@string/enter_country"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:layout_marginTop="60dp"
+        android:textSize="50sp">
+    </EditText>
+
+    <Button
+        android:id="@+id/show_news_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center"
+        android:text="@string/show_news"
+        android:textSize="30sp">
+    </Button>
+
+</LinearLayout>

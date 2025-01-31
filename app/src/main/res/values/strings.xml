@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">EvaluationRe</string>
+    <string name="enter_source">Enter source</string>
+    <string name="enter_country">Enter country</string>
+    <string name="show_news">SHOW NEWS</string>
+    <string name="news_title">News Title</string>
+    <string name="news_description">News Description</string>
+</resources>
